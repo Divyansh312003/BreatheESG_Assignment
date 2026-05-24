@@ -1,0 +1,48 @@
+{
+  "userId": "traveler-001",
+  "feedGeneratedAt": "2026-05-20T09:30:00Z",
+  "receipts": [
+    {
+      "id": "air-1001",
+      "validationSchema": "https://preview.developer.concur.com/api-reference/receipts/air-receipt.schema.json",
+      "receipt": {
+        "tripId": "TRIP-9001",
+        "merchantName": "British Airways",
+        "bookingDate": "2026-05-08",
+        "originAirportCode": "LHR",
+        "destinationAirportCode": "AMS",
+        "baseFare": 420.00,
+        "currency": "GBP",
+        "homeFacilityCode": "PL01"
+      }
+    },
+    {
+      "id": "hotel-1001",
+      "validationSchema": "https://preview.developer.concur.com/api-reference/receipts/hotel-receipt.schema.json",
+      "receipt": {
+        "tripId": "TRIP-9001",
+        "merchantName": "CitizenM Amsterdam",
+        "checkIn": "2026-05-08",
+        "checkOut": "2026-05-10",
+        "amount": 510.00,
+        "currency": "EUR",
+        "city": "Amsterdam",
+        "country": "NL",
+        "homeFacilityCode": "PL01"
+      }
+    },
+    {
+      "id": "ground-1001",
+      "validationSchema": "https://preview.developer.concur.com/api-reference/receipts/ground-transport-receipt.schema.json",
+      "receipt": {
+        "tripId": "TRIP-9001",
+        "transactionDate": "2026-05-10",
+        "vehicleType": "Taxi",
+        "distanceMiles": 18.4,
+        "amount": 67.20,
+        "currency": "EUR",
+        "homeFacilityCode": "DE02"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gb:GreenButtonExport xmlns:gb="http://naesb.org/espi">
+  <gb:MeterReading id="MR-PL01-202605">
+    <gb:UsagePointId>GB-PL01-UTILITY</gb:UsagePointId>
+    <gb:ServiceLocation>PL01</gb:ServiceLocation>
+    <gb:TariffProfile>E-TOU-BUSINESS</gb:TariffProfile>
+    <gb:BillingPeriod>
+      <gb:Start>2026-04-15</gb:Start>
+      <gb:End>2026-05-14</gb:End>
+    </gb:BillingPeriod>
+    <gb:ReadingType>
+      <gb:Unit>kWh</gb:Unit>
+    </gb:ReadingType>
+    <gb:IntervalBlock>
+      <gb:IntervalReading>
+        <gb:Start>2026-04-15T00:00:00Z</gb:Start>
+        <gb:DurationHours>360</gb:DurationHours>
+        <gb:Value>18432.0</gb:Value>
+        <gb:Cost>3210.44</gb:Cost>
+      </gb:IntervalReading>
+      <gb:IntervalReading>
+        <gb:Start>2026-04-30T00:00:00Z</gb:Start>
+        <gb:DurationHours>336</gb:DurationHours>
+        <gb:Value>17720.0</gb:Value>
+        <gb:Cost>2988.12</gb:Cost>
+      </gb:IntervalReading>
+    </gb:IntervalBlock>
+  </gb:MeterReading>
+  <gb:MeterReading id="MR-DE02-202605">
+    <gb:UsagePointId>DE02-ELEC-001</gb:UsagePointId>
+    <gb:ServiceLocation>DE02</gb:ServiceLocation>
+    <gb:TariffProfile>INDUSTRIAL-FLAT</gb:TariffProfile>
+    <gb:BillingPeriod>
+      <gb:Start>2026-05-01</gb:Start>
+      <gb:End>2026-05-31</gb:End>
+    </gb:BillingPeriod>
+    <gb:ReadingType>
+      <gb:Unit>kWh</gb:Unit>
+    </gb:ReadingType>
+    <gb:IntervalBlock>
+      <gb:IntervalReading>
+        <gb:Start>2026-05-01T00:00:00Z</gb:Start>
+        <gb:DurationHours>744</gb:DurationHours>
+        <gb:Value>12440.6</gb:Value>
+        <gb:Cost>2119.20</gb:Cost>
+      </gb:IntervalReading>
+    </gb:IntervalBlock>
+  </gb:MeterReading>
+</gb:GreenButtonExport>

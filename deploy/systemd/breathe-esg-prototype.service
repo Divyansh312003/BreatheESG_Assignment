@@ -1,0 +1,17 @@
+[Unit]
+Description=Breathe ESG Prototype
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/apps/breathe-esg-prototype/backend
+Environment=APP_HOST=0.0.0.0
+Environment=APP_PORT=8810
+ExecStart=/opt/apps/breathe-esg-prototype/scripts/launch_local.sh
+Restart=always
+RestartSec=5
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

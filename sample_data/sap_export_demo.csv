@@ -1,0 +1,6 @@
+PurchasingDocument,PurchasingItem,CompanyCode,Plant,PostingDate,Material,MaterialDescription,MaterialGroup,Quantity,OrderUnit,NetPriceAmount,DocumentCurrency,Supplier
+4500001001,00010,1000,PL01,2026-05-02,FUEL-DIESEL,Diesel for backup generators,FUEL_DIESEL,1200,L,1584.00,USD,Shell Energy
+4500001002,00020,1000,PL01,2026-05-03,STEEL-PLATE,Cold rolled steel,RAW_MATERIAL,800,KG,1040.00,USD,ArcelorMittal
+4500001003,00010,1000,DE02,2026-05-05,OFFICE-CHAIR,Ergonomic chair,OFFICE_FURNITURE,24,EA,4800.00,EUR,IKEA Business
+4500001004,00010,1000,UNK1,2026-05-08,FUEL-GAS,Fleet gasoline,FUEL_GASOLINE,240,GAL,980.00,USD,Total Energies
+4500001005,00010,1000,PL01,,LUBE-OIL,Maintenance lubricant,RAW_MATERIAL,15,L,120.00,USD,RS Components
