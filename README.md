@@ -74,11 +74,15 @@ breathe-esg-prototype/
 ├── scripts/
 │   ├── build_frontend.sh         # Local frontend build helper
 │   ├── install.sh                # Local venv + npm install
+│   ├── install_windows.ps1       # Windows venv + npm install helper
 │   ├── launch_local.sh           # Local migrate/seed/build + gunicorn launch
+│   ├── launch_windows.ps1        # Windows migrate/seed/build + Django runserver launch
 │   ├── render_build.sh           # Render build hook for dependency install + collectstatic
 │   ├── render_release.sh         # Render pre-deploy hook for migrations + idempotent seed data
 │   ├── render_start.sh           # Render start hook using Render's PORT env var
-│   └── run_tests.sh              # Backend tests + frontend build verification
+│   ├── run_frontend_windows.ps1  # Optional Windows Vite dev server helper
+│   ├── run_tests.sh              # Backend tests + frontend build verification
+│   └── run_tests_windows.ps1     # Windows backend tests + frontend build verification
 ├── build.sh                      # Root Render build wrapper for manual service setup
 ├── start.sh                      # Root Render start wrapper for manual service setup
 ├── .python-version               # Pins Render to the tested Python version
@@ -168,13 +172,32 @@ breathe-esg-prototype/
 
 ## Running it
 
+Linux/macOS:
+
 ```bash
 cd /opt/apps/breathe-esg-prototype
 ./scripts/install.sh
 ./scripts/launch_local.sh
 ```
 
-The app listens on `http://0.0.0.0:8810` by default. The JSON API is under `/api/v1/...`.
+Windows PowerShell:
+
+```powershell
+cd BreatheESG_Assignment
+git checkout feature/breathe-esg-prototype
+.\scripts\install_windows.ps1
+.\scripts\launch_windows.ps1
+```
+
+The app listens on `http://127.0.0.1:8810` by default. The JSON API is under `/api/v1/...`.
+
+For React dev-server mode on Windows, keep `launch_windows.ps1` running in one terminal and run this in a second terminal:
+
+```powershell
+.\scripts\run_frontend_windows.ps1
+```
+
+Open `http://127.0.0.1:5173`. Vite proxies `/api/...` to the Django backend on `http://127.0.0.1:8810`.
 
 ## Deploy on Render
 
@@ -193,6 +216,12 @@ The app listens on `http://0.0.0.0:8810` by default. The JSON API is under `/api
 ```bash
 cd /opt/apps/breathe-esg-prototype
 ./scripts/run_tests.sh
+```
+
+Windows PowerShell:
+
+```powershell
+.\scripts\run_tests_windows.ps1
 ```
 
 ## Main API routes

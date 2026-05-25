@@ -30,3 +30,9 @@
 
 - Added `frontend/.npmrc` to force frontend installs to use the public npm registry for this project.
 - Rewrote frontend lockfile package URLs away from the internal registry so `npm install` works on public networks.
+
+## 2026-05-25 Windows local launch support
+
+- Added PowerShell install, launch, frontend dev, and test helpers for native Windows development.
+- Added a Vite `/api` proxy so the React dev server can talk to the Django backend during local Windows development.
+- Documented the Windows startup paths in `README.md`.
