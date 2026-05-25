@@ -25,3 +25,8 @@
 - Added root-level `build.sh` and `start.sh` wrappers so manually configured Render services can use simple commands from the repository root.
 - Added `scripts/render_release.sh` and moved migrations plus idempotent demo seeding into Render's pre-deploy phase.
 - Updated `render.yaml` to use the root wrappers and `preDeployCommand`, keeping the web start command focused on binding Gunicorn to Render's assigned port.
+
+## 2026-05-25 npm registry fix
+
+- Added `frontend/.npmrc` to force frontend installs to use the public npm registry for this project.
+- Rewrote frontend lockfile package URLs away from the Oracle internal registry so `npm install` works outside the Oracle network.
