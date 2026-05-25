@@ -29,4 +29,4 @@
 ## 2026-05-25 npm registry fix
 
 - Added `frontend/.npmrc` to force frontend installs to use the public npm registry for this project.
-- Rewrote frontend lockfile package URLs away from the Oracle internal registry so `npm install` works outside the Oracle network.
+- Rewrote frontend lockfile package URLs away from the internal registry so `npm install` works on public networks.

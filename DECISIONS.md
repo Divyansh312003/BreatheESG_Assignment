@@ -33,5 +33,5 @@
 ## 6. Use SQLite locally
 
 - Choice: local SQLite database under Django 4.2.
-- Why: there is no Oracle service available in this environment, and Django 5 was incompatible with the host SQLite version. Django 4.2 solves the runtime constraint while keeping the relational model portable.
-- What I would ask the PM: is local reproducibility or Oracle fidelity more important for the hiring exercise?
+- Why: Django 5 was incompatible with the host SQLite version. Django 4.2 solves the runtime constraint while keeping the relational model portable.
+- What I would ask the PM: is local reproducibility or production database fidelity more important for the hiring exercise?
