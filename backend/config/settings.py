@@ -5,13 +5,40 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BASE_DIR.parent
 APP_VERSION = os.environ.get("APP_VERSION", "0.1.0")
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
+
+
+def env_flag(name, default=False):
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
     "local-only-breathe-esg-prototype-secret-key",
 )
-DEBUG = os.environ.get("DEBUG", "true").lower() == "true"
-ALLOWED_HOSTS = [host.strip() for host in os.environ.get("ALLOWED_HOSTS", "*").split(",") if host.strip()]
+DEBUG = env_flag("DEBUG", default=not (env_flag("RENDER") or bool(RENDER_EXTERNAL_HOSTNAME)))
+
+allowed_hosts_env = os.environ.get("ALLOWED_HOSTS", "").strip()
+if allowed_hosts_env:
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(",") if host.strip()]
+else:
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+if RENDER_EXTERNAL_HOSTNAME and RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+csrf_trusted_origins_env = os.environ.get("CSRF_TRUSTED_ORIGINS", "").strip()
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip() for origin in csrf_trusted_origins_env.split(",") if origin.strip()
+]
+if RENDER_EXTERNAL_HOSTNAME:
+    render_origin = f"https://{RENDER_EXTERNAL_HOSTNAME}"
+    if render_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(render_origin)
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 INSTALLED_APPS = [
     "django.contrib.admin",

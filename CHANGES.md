@@ -10,3 +10,12 @@
 - Added integration tests for dashboard loading, import APIs, and record approval.
 - Added install, build, test, and launch scripts plus a systemd unit template.
 - Downgraded the backend from Django 5 to Django 4.2 LTS because the host SQLite version is `3.26.0`, which cannot run Django 5.
+
+## 2026-05-25
+
+- Added a Render deployment blueprint at `render.yaml` with explicit build, start, and health check settings.
+- Added `scripts/render_build.sh` and `scripts/render_start.sh` so Render installs Python dependencies, collects static assets, listens on `PORT`, runs migrations, and reseeds demo data at boot.
+- Pinned the Render Python runtime with `.python-version` to `3.11.13`, matching the tested local environment.
+- Updated Django settings so Render can populate `ALLOWED_HOSTS` from `RENDER_EXTERNAL_HOSTNAME`, trust the HTTPS proxy headers, and default `DEBUG` off in hosted environments.
+- Stopped ignoring committed frontend build artifacts, which avoids an `npm` dependency in the Render Python runtime.
+- Documented the Render deployment path and the SQLite/media persistence tradeoff in `README.md`.

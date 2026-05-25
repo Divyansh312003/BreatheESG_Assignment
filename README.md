@@ -57,6 +57,7 @@ breathe-esg-prototype/
 ├── deploy/
 │   └── systemd/
 │       └── breathe-esg-prototype.service
+├── render.yaml                   # Render blueprint with build, start, and health check config
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx               # Analyst dashboard UI
@@ -71,10 +72,13 @@ breathe-esg-prototype/
 │   ├── utility_green_button_demo.xml
 │   └── travel_concur_demo.json
 ├── scripts/
-│   ├── build_frontend.sh
-│   ├── install.sh
-│   ├── launch_local.sh
-│   └── run_tests.sh
+│   ├── build_frontend.sh         # Local frontend build helper
+│   ├── install.sh                # Local venv + npm install
+│   ├── launch_local.sh           # Local migrate/seed/build + gunicorn launch
+│   ├── render_build.sh           # Render build hook for dependency install + collectstatic
+│   ├── render_start.sh           # Render start hook using Render's PORT env var
+│   └── run_tests.sh              # Backend tests + frontend build verification
+├── .python-version               # Pins Render to the tested Python version
 ├── CHANGES.md
 ├── DECISIONS.md
 ├── MODEL.md
@@ -168,6 +172,17 @@ cd /opt/apps/breathe-esg-prototype
 ```
 
 The app listens on `http://0.0.0.0:8810` by default. The JSON API is under `/api/v1/...`.
+
+## Deploy on Render
+
+- Use the repository root as the Render service root.
+- Runtime: Python
+- Build command: `bash ./scripts/render_build.sh`
+- Start command: `bash ./scripts/render_start.sh`
+- Health check path: `/api/v1/health`
+- The Render start script binds Gunicorn to `0.0.0.0:$PORT` and runs migrations plus idempotent demo seeding on boot.
+- Frontend assets are committed under `backend/static/frontend`, so Render does not need `npm` for this deploy path.
+- This prototype still uses SQLite and local media storage. That is fine for a demo deploy, but both the database file and uploaded files are ephemeral on Render unless you move to managed persistence.
 
 ## Test it
 
