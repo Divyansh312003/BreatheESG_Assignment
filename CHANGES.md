@@ -19,3 +19,9 @@
 - Updated Django settings so Render can populate `ALLOWED_HOSTS` from `RENDER_EXTERNAL_HOSTNAME`, trust the HTTPS proxy headers, and default `DEBUG` off in hosted environments.
 - Stopped ignoring committed frontend build artifacts, which avoids an `npm` dependency in the Render Python runtime.
 - Documented the Render deployment path and the SQLite/media persistence tradeoff in `README.md`.
+
+## 2026-05-25 Render deployment hardening
+
+- Added root-level `build.sh` and `start.sh` wrappers so manually configured Render services can use simple commands from the repository root.
+- Added `scripts/render_release.sh` and moved migrations plus idempotent demo seeding into Render's pre-deploy phase.
+- Updated `render.yaml` to use the root wrappers and `preDeployCommand`, keeping the web start command focused on binding Gunicorn to Render's assigned port.

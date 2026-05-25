@@ -76,8 +76,11 @@ breathe-esg-prototype/
 │   ├── install.sh                # Local venv + npm install
 │   ├── launch_local.sh           # Local migrate/seed/build + gunicorn launch
 │   ├── render_build.sh           # Render build hook for dependency install + collectstatic
+│   ├── render_release.sh         # Render pre-deploy hook for migrations + idempotent seed data
 │   ├── render_start.sh           # Render start hook using Render's PORT env var
 │   └── run_tests.sh              # Backend tests + frontend build verification
+├── build.sh                      # Root Render build wrapper for manual service setup
+├── start.sh                      # Root Render start wrapper for manual service setup
 ├── .python-version               # Pins Render to the tested Python version
 ├── CHANGES.md
 ├── DECISIONS.md
@@ -177,10 +180,11 @@ The app listens on `http://0.0.0.0:8810` by default. The JSON API is under `/api
 
 - Use the repository root as the Render service root.
 - Runtime: Python
-- Build command: `bash ./scripts/render_build.sh`
-- Start command: `bash ./scripts/render_start.sh`
+- Build command: `bash ./build.sh`
+- Pre-deploy command: `bash ./scripts/render_release.sh`
+- Start command: `bash ./start.sh`
 - Health check path: `/api/v1/health`
-- The Render start script binds Gunicorn to `0.0.0.0:$PORT` and runs migrations plus idempotent demo seeding on boot.
+- The Render start script binds Gunicorn to `0.0.0.0:$PORT`; migrations and idempotent demo seeding run in the pre-deploy step.
 - Frontend assets are committed under `backend/static/frontend`, so Render does not need `npm` for this deploy path.
 - This prototype still uses SQLite and local media storage. That is fine for a demo deploy, but both the database file and uploaded files are ephemeral on Render unless you move to managed persistence.
 

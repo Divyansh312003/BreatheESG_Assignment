@@ -8,9 +8,6 @@ WORKERS="${GUNICORN_WORKERS:-2}"
 
 cd "${PROJECT_ROOT}"
 
-python backend/manage.py migrate --noinput
-python backend/manage.py seed_demo_data --load-samples
-
 exec gunicorn \
   --chdir "${PROJECT_ROOT}/backend" \
   --bind "${HOST}:${PORT}" \
