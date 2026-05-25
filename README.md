@@ -2,13 +2,13 @@
 
 Version `0.1.0`
 
-This is a deployed-style local prototype for the Breathe ESG assignment. It ingests three realistic enterprise source shapes, normalizes them into one review ledger, flags suspicious rows, and lets an analyst approve or reject records with audit history.
+This is a  prototype for the Breathe ESG assignment. It ingests three realistic enterprise source shapes, normalizes them into one review ledger, flags suspicious rows, and lets an analyst approve or reject records with audit history.
 
 ## Why this shape
 
-- `Django + JSON API`: the assignment explicitly asked for Django REST. Django handles the relational model, migrations, admin, and seeding cleanly.
+- `Django + JSON API`: . Django handles the relational model, migrations, admin, and seeding cleanly.
 - `React + Vite`: React satisfies the frontend requirement while Vite keeps the client small and fast to build. The bundle is emitted into Django static files so the app runs as one deployable service.
-- `SQLite for local launch`: the host does not have a usable Oracle instance or a recent enough system SQLite for Django 5. I moved the backend to Django `4.2 LTS`, which supports the host SQLite `3.26.0`. The schema stays ORM-driven and Oracle-friendly if the database is swapped later.
+- `SQLite for local launch`: 
 - `One normalized ledger`: analysts review one `ActivityRecord` shape instead of learning three source-specific UIs. Source-specific raw payloads are still preserved for traceability.
 - `Idempotent seeding and imports`: the seed script can be rerun safely, and records dedupe on `(tenant, source_type, external_id)` so repeated sample syncs do not explode the dataset.
 
