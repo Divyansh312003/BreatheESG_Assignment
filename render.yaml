@@ -4,9 +4,9 @@ services:
     runtime: python
     plan: free
     branch: feature/breathe-esg-prototype
-    buildCommand: bash ./build.sh
+    buildCommand: bash ./scripts/render_build.sh
     preDeployCommand: bash ./scripts/render_release.sh
-    startCommand: bash ./start.sh
+    startCommand: gunicorn --chdir backend --bind 0.0.0.0:$PORT --workers 2 --access-logfile - --error-logfile - config.wsgi:application
     healthCheckPath: /api/v1/health
     autoDeployTrigger: commit
     envVars:
@@ -14,3 +14,5 @@ services:
         value: "false"
       - key: DJANGO_SECRET_KEY
         generateValue: true
+      - key: PYTHONPATH
+        value: backend
